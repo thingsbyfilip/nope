@@ -1,0 +1,115 @@
+=== STRUCTURES ===
+
+plain				0/0/1, grass
+plain_no_margin		0/0/0, grass
+no_margin			0/0/0, road
+
+rock				3/3/1, rock
+rock2				3/3/2, rock
+rock_small			2/2/0, rock
+tree				2/2/1, forest
+
+water				0/0/2, water
+pond				5/5/1, water
+
+plaza_background	0/0/1, road
+wall_background		0/0/2, wall
+rock_background		0/0/2, rock
+forest_background	0/0/1, forest
+
+waypoint			2/2/0, road
+pillar				2/2/2, building
+
+house_small			6/4/1, building
+house_big			7/5/1, building
+shop				8/5/1, building
+
+fence_bg			0/0/1, wall
+fence_inner			0/0/1, grass
+
+temple_bg			0/0/0, building
+temple_bg_wide		0/0/2, building
+temple_inner		5/4/2, road
+
+
+=== TREE ===
+
+
+#individual houses and neighbourhoods
+
+[house]
+house (house_small)
+
+[house]
+house (house_big)
+
+[house_area]
+house_area (plain)
+	house (house)
+	@house.s -> s (road)
+
+[house_area]
+house_area (plain)
+	house (house)
+	@house.s -> s (road)
+
+[house_area]
+house_area (plain)
+	house (house_big)
+	tree (tree)
+	@house.s -> s (road)
+
+
+#short rows of houses
+
+[house_row]
+house_row (no_margin)
+	area1 (house_area)
+	area2 (house_area)
+
+[house_row]
+house_row (no_margin)
+	house_area (plain)
+		shop (shop)
+		@shop.s -> s (road)
+
+
+#large clusters of houses
+
+[full_row]
+full_row (plaza_background)
+	houses1 (house_row)
+	houses2 (house_row)
+	@houses1.e -> houses2.w (road)
+
+[full_row]
+full_row (plaza_background)
+	houses (house_row)
+
+
+#root
+
+[IGNORED_root]
+container (rock_background)
+	container (rock_background)
+		town (forest_background)
+			houses1 (full_row)
+			houses2 (full_row)
+			houses3 (full_row)
+			@houses1.s -> houses2.n (grass)
+			@houses2.s -> houses3.n (grass)
+		@town.s -> s (grass)
+	@container.s -> s (grass)
+
+[root]
+container (rock_background)
+	container (rock_background)
+		town (forest_background)
+			houses1 (full_row)
+			houses2 (full_row)
+			houses3 (full_row)
+			@houses1.s -> s (grass)
+			@houses2.s -> s (grass)
+			@houses3.s -> s (grass)
+		@town.s -> s (grass)
+	@container.s -> s (grass)

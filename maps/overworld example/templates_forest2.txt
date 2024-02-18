@@ -1,0 +1,79 @@
+#=== forest passage ===
+
+[forest_passage_EW]
+forest_passage_EW (plain)
+	forest_corridor1 (forest_corridor)
+	forest_corridor2 (forest_corridor)
+	@forest_corridor1.e -> e
+	@forest_corridor2.w -> w
+	@forest_corridor1.w -> forest_corridor2.e
+
+[forest_passage_EW]
+forest_passage_EW (plain)
+	forest_corridor1 (forest_corridor)
+	forest_open (forest_open)
+	forest_corridor2 (forest_corridor)
+	@forest_corridor1.w -> w
+	@forest_corridor1.e -> forest_open.w
+	@forest_open.e -> forest_corridor2.w
+	@forest_corridor2.e -> e
+
+[forest_passage_SN]
+forest_passage_SN (plain)
+	forest_corridor1 (forest_corridor)
+	forest_open (forest_open)
+	forest_corridor2 (forest_corridor)
+	@forest_corridor1.s -> s
+	@forest_corridor1.n -> forest_open.s
+	@forest_open.n -> forest_corridor2.s
+	@forest_corridor2.n -> n
+
+
+[forest_passage_SNW]
+forest_passage_SNW (plain)
+	forest_corridor1 (forest_corridor)
+	forest_open (forest_open)
+	forest_corridor2 (forest_corridor)
+	@forest_corridor1.s -> s
+	@forest_corridor1.n -> forest_open.s
+	@forest_open.n -> forest_corridor2.s
+	@forest_corridor2.n -> n
+	@forest_open.w -> w
+
+
+[forest_passage_NEW]
+forest_passage_NEW (plain)
+	forest_corridor1 (forest_corridor)
+	forest_open (forest_open)
+	forest_corridor2 (forest_corridor)
+	@forest_corridor1.w -> w
+	@forest_corridor1.e -> forest_open.w
+	@forest_open.e -> forest_corridor2.w
+	@forest_corridor2.e -> e
+	@forest_open.n -> n
+
+
+[forest_passage_SEW]
+forest_passage_SEW (plain)
+	forest_corridor1 (forest_corridor)
+	forest_open (forest_open)
+	forest_corridor2 (forest_corridor)
+	@forest_corridor1.w -> w
+	@forest_corridor1.e -> forest_open.w
+	@forest_open.e -> forest_corridor2.w
+	@forest_corridor2.e -> e
+	@forest_open.s -> s
+
+
+#=== forest passage (river) ===
+
+[forest_passage_river_EW]
+forest_passage_river_EW (plain)
+	forest_corridor1 (forest_corridor)
+	forest_open_river (forest_open_river_EW)
+	forest_corridor2 (forest_corridor)
+	@forest_open_river.s -> s (water)
+	@forest_corridor1.w -> w
+	@forest_corridor1.e -> forest_open_river.w
+	@forest_open_river.e -> forest_corridor2.w
+	@forest_corridor2.e -> e

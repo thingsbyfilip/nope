@@ -1,0 +1,271 @@
+=== STRUCTURES ===
+
+rock_background		0/0/1, rock
+dirt_background		0/0/2, dirt
+grass_background	0/0/1, grass
+
+basic_room			6/6/2, dirt
+
+complex_room_center	6/6/0, dirt
+complex_room_side	3/3/0, dirt
+
+room_center			3/3/1, dirt
+
+pillar				2/2/2, building
+pond				5/4/2, water
+rock				2/2/2, rock
+stone				1/1/1, rock
+
+chest				2/2/2, chest
+boss				2/2/2, boss
+enemy				2/2/1, enemy
+
+
+=== TREE ===
+
+#room types
+
+[pillar_room]
+pillar_room (dirt_background)
+	center (room_center), !
+	pillar (pillar)
+	pillar (pillar)
+
+[pillar_room]
+pillar_room (dirt_background)
+	center (room_center), !
+	pillar (pillar)
+	pillar (pillar)
+	pillar (pillar)
+	pillar (pillar)
+
+[pillar_room]
+pillar_room (dirt_background)
+	center (room_center), !
+	pillar (pillar)
+	pillar (pillar)
+	pillar (pillar)
+	pillar (pillar)
+	pillar (pillar)
+	pillar (pillar)
+
+
+[pond_room]
+pond_room (dirt_background)
+	pond (pond)
+
+[pond_room]
+pond_room (dirt_background)
+	pond (pond), !
+	stone (stone)
+
+[pond_room]
+pond_room (dirt_background)
+	pond (pond), !
+	stone (stone)
+	stone (stone)
+
+
+[stone_room]
+stone_room (dirt_background)
+	rock (rock), !
+	rock (rock)
+	rock (rock)
+	stone (stone)
+	stone (stone)
+	stone (stone)
+
+[stone_room]
+stone_room (dirt_background)
+	rock (rock), !
+	rock (rock)
+	stone (stone)
+	stone (stone)
+	stone (stone)
+	stone (stone)
+
+[stone_room]
+stone_room (dirt_background)
+	rock (rock), !
+	rock (rock)
+	rock (rock)
+	rock (rock)
+	stone (stone)
+	stone (stone)
+
+
+[treasure_room]
+treasure_room (dirt_background)
+	chest (chest), !
+	rock (rock)
+	rock (rock)
+	rock (rock)
+
+[treasure_room]
+treasure_room (dirt_background)
+	chest (chest), !
+	rock (rock)
+	rock (rock)
+
+
+[boss_room]
+boss_room (dirt_background)
+	center (room_center), !
+	boss (boss)
+	chest (chest)
+	stone1 (stone)
+	stone2 (stone)
+
+
+[complex_room]
+complex_room (rock_background)
+	center (complex_room_center), !
+	side1 (complex_room_side)
+	side2 (complex_room_side)
+	side3 (complex_room_side)
+	side4 (complex_room_side)
+
+
+#room randomization
+
+[random_room]
+random_room (basic_room)
+
+
+[random_room]
+random_room (rock_background)
+	random_room (treasure_room)
+	@random_room.s -> s
+	@random_room.n -> n
+	@random_room.e -> e
+	@random_room.w -> w
+
+
+[random_room]
+random_room (rock_background)
+	random_room (stone_room)
+	@random_room.s -> s
+	@random_room.n -> n
+	@random_room.e -> e
+	@random_room.w -> w
+
+
+[random_room]
+random_room (rock_background)
+	random_room (pond_room)
+	@random_room.s -> s
+	@random_room.n -> n
+	@random_room.e -> e
+	@random_room.w -> w
+
+
+[random_room]
+random_room (rock_background)
+	random_room (pillar_room)
+	@random_room.s -> s
+	@random_room.n -> n
+	@random_room.e -> e
+	@random_room.w -> w
+
+
+[random_room]
+random_room (rock_background)
+	random_room (complex_room)
+	@random_room.s -> s
+	@random_room.n -> n
+	@random_room.e -> e
+	@random_room.w -> w
+
+
+#root node - 4 possible templates
+
+[root]
+dungeon (rock_background)
+	room1 (random_room)
+	room2 (random_room)
+	room3 (random_room)
+	room4 (random_room)
+	room5 (random_room)
+	room6 (random_room)
+	boss_room (boss_room)
+
+	#basic progression
+	@room1.s -> s (dirt)
+	@room1.n -> room2.e
+	@room2.w -> room3.e
+	@room3.e -> room4.s
+	@room4.n -> room5.w
+	@room5.e -> room6.s
+	@room6.n -> boss_room.s
+
+	#side connections
+	@room2.n -> room5.s
+
+
+[root]
+dungeon (rock_background)
+	room1 (random_room)
+	room2 (random_room)
+	room3 (random_room)
+	room4 (random_room)
+	room5 (random_room)
+	room6 (random_room)
+	boss_room (boss_room)
+
+	#basic progression
+	@room1.s -> s (dirt)
+	@room1.n -> room2.w
+	@room2.e -> room3.w
+	@room3.w -> room4.s
+	@room4.n -> room5.e
+	@room5.w -> room6.s
+	@room6.n -> boss_room.s
+
+	#side connections
+	@room2.n -> room5.s
+
+
+[root]
+dungeon (rock_background)
+	room1 (random_room)
+	room2 (random_room)
+	room3 (random_room)
+	room4 (random_room)
+	room5 (random_room)
+	room6 (random_room)
+	boss_room (boss_room)
+
+	#basic progression
+	@room1.s -> s (dirt)
+	@room1.n -> room2.e
+	@room2.w -> room3.e
+	@room3.e -> room4.s
+	@room4.e -> room6.s
+	@room5.w -> room6.s
+	@room6.n -> boss_room.s
+
+	#side connections
+	@room2.n -> room5.s
+
+
+[root]
+dungeon (rock_background)
+	room1 (random_room)
+	room2 (random_room)
+	room3 (random_room)
+	room4 (random_room)
+	room5 (random_room)
+	room6 (random_room)
+	boss_room (boss_room)
+
+	#basic progression
+	@room1.s -> s (dirt)
+	@room1.n -> room2.e
+	@room2.e -> room3.w
+	@room3.w -> room4.s
+	@room4.w -> room6.s
+	@room5.e -> room6.s
+	@room6.n -> boss_room.s
+
+	#side connections
+	@room2.n -> room5.s

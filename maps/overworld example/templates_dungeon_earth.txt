@@ -1,0 +1,227 @@
+#dungeon rooms
+
+[earth_room_center]
+earth_room_center (room_container)
+	center (cave_background), !
+		pond (water2)
+			puddle (puddle), !
+		@pond.s -> s (dirt)
+		@pond.n -> n (dirt)
+		@pond.e -> e (dirt)
+		@pond.w -> w (dirt)
+	pond1 (lake)
+	pond2 (lake)
+	pond3 (lake)
+	pond4 (lake)
+	@center.s -> s (dirt)
+	@center.n -> n (dirt)
+	@center.e -> e (dirt)
+	@center.w -> w (dirt)
+	@pond1.s -> s (dirt)
+	@pond1.e -> e (dirt)
+	@pond2.s -> s (dirt)
+	@pond2.w -> w (dirt)
+	@pond3.n -> n (dirt)
+	@pond3.e -> e (dirt)
+	@pond4.n -> n (dirt)
+	@pond4.w -> w (dirt)
+
+
+[earth_room_circle]
+earth_room_circle (room_container)
+	walls (cave_background), !
+		center (room_center)
+		@center.s -> s (dirt)
+		@center.n -> n (dirt)
+		@center.e -> e (dirt)
+		@center.w -> w (dirt)
+
+
+[earth_room_rubble]
+earth_room_rubble (room_container)
+	rubble (rock), !
+	rock (rock)
+	rock (rock)
+	rock (rock)
+	rock (rock)
+	pebble (rock_small)
+	pebble (rock_small)
+	pebble (rock_small)
+	pebble (rock_small)
+	@rubble.s -> s (dirt)
+	@rubble.n -> n (dirt)
+	@rubble.e -> e (dirt)
+	@rubble.w -> w (dirt)
+
+
+[earth_room_small]
+earth_room_small (room_container)
+	waypoint (room_waypoint), !
+	rock1 (rock)
+	rock2 (rock)
+	rock3 (rock)
+	rock4 (rock)
+	@rock1.s -> s (dirt)
+	@rock1.e -> e (dirt)
+	@rock2.s -> s (dirt)
+	@rock2.w -> w (dirt)
+	@rock3.n -> n (dirt)
+	@rock3.e -> e (dirt)
+	@rock4.n -> n (dirt)
+	@rock4.w -> w (dirt)
+
+
+[earth_room_small]
+earth_room_small (room_container)
+	waypoint (room_waypoint), !
+	rock1 (rock)
+	rock2 (rock)
+	rock3 (rock)
+	rock4 (rock)
+	@rock1.s -> s (dirt)
+	@rock2.n -> n (dirt)
+	@rock3.e -> e (dirt)
+	@rock4.w -> w (dirt)
+
+
+[earth_room_wide]
+earth_room_wide (room_container)
+	waypoint (room_waypoint), !
+	large_rock1 (rock2)
+	large_rock2 (rock2)
+	@large_rock1.e -> e (dirt)
+	@large_rock2.w -> w (dirt)
+
+
+[earth_room_final]
+earth_room_center (room_container)
+	center (cave_background), !
+		plaza (room_container)
+			chest (chest), !
+		@plaza.s -> s (dirt)
+		@plaza.n -> n (dirt)
+		@plaza.e -> e (dirt)
+		@plaza.w -> w (dirt)
+	pillar1 (pillar)
+	pillar2 (pillar)
+	pillar3 (pillar)
+	pillar4 (pillar)
+	pillar5 (pillar)
+	pillar6 (pillar)
+	pillar7 (pillar)
+	pillar8 (pillar)
+	@pillar1.s -> s (dirt)
+	@pillar1.e -> e (dirt)
+	@pillar2.s -> s (dirt)
+	@pillar2.w -> w (dirt)
+	@pillar3.n -> n (dirt)
+	@pillar3.e -> e (dirt)
+	@pillar4.n -> n (dirt)
+	@pillar4.w -> w (dirt)
+	@pillar5.s -> s (dirt)
+	@pillar6.n -> n (dirt)
+	@pillar7.e -> e (dirt)
+	@pillar8.w -> w (dirt)
+
+
+#dungeon test
+
+[dungeon_test]
+dungeon_test (cave_background)
+	entrance (earth_room_wide)
+	center (earth_room_center)
+	room1 (earth_room_small)
+	room2 (earth_room_small)
+	room3 (earth_room_small)
+	room4 (earth_room_small)
+	@entrance.n -> center.s (dirt)
+	@center.e -> room1.w (dirt)
+	@center.w -> room2.e (dirt)
+	@center.e -> room3.w (dirt)
+	@center.w -> room4.e (dirt)
+
+
+#dungeon test
+
+[dungeon_test2]
+dungeon_test2 (cave_background)
+	entrance (earth_room_wide)
+	center (earth_room_center)
+	room1 (earth_room_small)
+	room2 (earth_room_small)
+	room3 (earth_room_small)
+	room4 (earth_room_small)
+	rubble1 (earth_room_rubble)
+	rubble2 (earth_room_rubble)
+	circle (earth_room_circle)
+	@entrance.s -> s (dirt)
+	@entrance.n -> center.s (dirt)
+	@center.e -> room1.w (dirt)
+	@center.w -> room2.e (dirt)
+	@center.e -> room3.w (dirt)
+	@center.w -> room4.e (dirt)
+	@room2.n -> rubble1.s (dirt)
+	@rubble1.e -> rubble2.w (dirt)
+	@rubble2.s -> center.n (destructible)
+	@room4.w -> circle.e (dirt)
+
+
+#dungeon
+
+[dungeon_earth_S]
+dungeon_earth_S (cave_background)
+	entrance (earth_room_wide)
+	center (earth_room_center)
+	room1 (earth_room_small)
+	room2 (earth_room_small)
+	room3 (earth_room_small)
+	rubble1 (earth_room_rubble)
+	rubble2 (earth_room_rubble)
+	circle1 (earth_room_circle)
+	circle2 (earth_room_circle)
+	circle3 (earth_room_circle)
+	boss_room (earth_room_final)
+	bonus_room (earth_room_circle)
+	@entrance.s -> s (dirt)
+	@entrance.n -> center.s (dirt)
+	@center.w -> room2.e (dirt)
+	@center.w -> room3.e (dirt)
+	@center.e -> room1.w (dirt)
+	@center.e -> circle2.w (dirt)
+	@room1.e -> circle3.w (dirt)
+	@room2.n -> rubble1.s (dirt)
+	@rubble1.e -> rubble2.w (dirt)
+	@rubble2.s -> center.n (destructible)
+	@room3.w -> circle1.e (dirt)
+	@rubble2.n -> boss_room.s (dirt)
+	@entrance.e -> bonus_room.w (destructible)
+
+#mirrored
+
+[dungeon_earth_S]
+dungeon_earth_S (cave_background)
+	entrance (earth_room_wide)
+	center (earth_room_center)
+	room1 (earth_room_small)
+	room2 (earth_room_small)
+	room3 (earth_room_small)
+	rubble1 (earth_room_rubble)
+	rubble2 (earth_room_rubble)
+	circle1 (earth_room_circle)
+	circle2 (earth_room_circle)
+	circle3 (earth_room_circle)
+	boss_room (earth_room_final)
+	bonus_room (earth_room_circle)
+	@entrance.s -> s (dirt)
+	@entrance.n -> center.s (dirt)
+	@center.e -> room2.w (dirt)
+	@center.e -> room3.w (dirt)
+	@center.w -> room1.e (dirt)
+	@center.w -> circle2.e (dirt)
+	@room1.w -> circle3.e (dirt)
+	@room2.n -> rubble1.s (dirt)
+	@rubble1.w -> rubble2.e (dirt)
+	@rubble2.s -> center.n (destructible)
+	@room3.e -> circle1.w (dirt)
+	@rubble2.n -> boss_room.s (dirt)
+	@entrance.w -> bonus_room.e (destructible)

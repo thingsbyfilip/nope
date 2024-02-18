@@ -1,0 +1,232 @@
+#subsection of town
+
+[town_section]
+town_section (plain)
+	mansion (building_large)
+	waypoint (waypoint)
+	tree1 (tree)
+	tree2 (tree)
+	tree3 (tree)
+	tree4 (tree)
+	tree5 (tree)
+	tree6 (tree)
+	@mansion.n -> n (grass)
+	@tree1.w -> waypoint.e (grass)
+	@tree2.e -> waypoint.w (grass)
+	@mansion.s -> waypoint.n
+	@waypoint.s -> s
+
+
+[town_section]
+town_section (plain)
+	mansion (building_large)
+	tree1 (tree)
+	tree2 (tree)
+	@mansion.n -> n (grass)
+	@mansion.s -> s
+
+
+[town_section]
+town_section (plain)
+	walls (wall_background)
+		plain (plain)
+			building (building), !
+			tree1 (tree)
+			tree2 (tree)
+			tree3 (tree)
+			tree4 (tree)
+			tree5 (tree)
+			@building.s -> s
+		@plain.s -> s
+	@walls.s -> s
+
+
+[town_section]
+town_section (plain)
+	walls (wall_background)
+		plain (plain)
+			pillar (pillar)
+			pillar (pillar)
+			pillar (pillar)
+			pillar (pillar)
+			pillar (pillar)
+			pillar (pillar)
+			pillar (pillar)
+		@plain.s -> s
+	@walls.s -> s
+
+
+[town_section]
+town_section (plain)
+	walls (wall_background)
+		plain (plain)
+			mansion (building_large), !
+			pillar (pillar)
+			pillar (pillar)
+			pillar (pillar)
+			pillar (pillar)
+			pillar (pillar)
+			pillar (pillar)
+			pillar (pillar)
+			@mansion.s -> s
+		@plain.s -> s
+	@walls.s -> s
+
+
+[town_section]
+town_section (plain)
+	mansion1 (building_large), !
+	mansion2 (building_large), !
+	@mansion1.e -> mansion2.w (grass)
+	@mansion1.s -> mansion2.s
+	@mansion1.s -> s
+
+
+#town square
+
+[town_square]
+town_square (plain)
+	pond (water2)
+		pond (water2)
+			plaza (plaza_room)
+			@plaza.n -> n
+			@plaza.e -> e
+			@plaza.w -> w
+			@plaza.s -> s
+		@pond.n -> n
+		@pond.e -> e
+		@pond.w -> w
+		@pond.s -> s
+	@pond.n -> n
+	@pond.e -> e
+	@pond.w -> w
+	@pond.s -> s
+
+
+[town_square]
+town_square (plain)
+	plaza (plaza_room)
+	@plaza.n -> n
+	@plaza.e -> e
+	@plaza.w -> w
+	@plaza.s -> s
+
+
+[town_square]
+town_square (plain)
+	plaza (plaza_container)
+		lake (lake)
+	@plaza.n -> n
+	@plaza.e -> e
+	@plaza.w -> w
+	@plaza.s -> s
+
+
+#town layouts
+
+[town]
+town (wall_background)
+	walls (wall_background)
+		plain (plain)
+
+			square (town_square), !
+			town_section (town_section)
+			town_section2 (town_section)
+			building1 (building)
+			building2 (building)
+			building3 (building)
+			building_large (building_large)
+
+			@square.e -> town_section.s
+			@square.w -> town_section2.s
+
+			@square.s -> building1.s
+			@square.s -> building2.s
+			@square.s -> building3.s
+			@building3.s -> building_large.s
+
+			@square.n -> n
+			@square.e -> e
+			@square.s -> s #just in case
+			@square.w -> w #just in case
+
+		@plain.s -> s
+		@plain.n -> n
+		@plain.e -> e
+		@plain.w -> w
+	@walls.s -> s
+	@walls.n -> n
+	@walls.e -> e
+	@walls.w -> w
+
+
+[town]
+town (wall_background)
+	walls (wall_background)
+		plain (plain)
+
+			square (town_square), !
+			town_section (town_section)
+			town_section2 (town_section)
+			building1 (building)
+			building2 (building)
+			building3 (building)
+			building4 (building_large)
+
+			@square.e -> town_section.s
+			@square.w -> town_section2.s
+
+			@square.n -> building1.s
+			@square.n -> building2.s
+			@square.s -> building3.s
+			@building3.s -> building4.s
+
+			@square.n -> n
+			@square.e -> e
+			@square.s -> s #just in case
+			@square.w -> w #just in case
+
+		@plain.s -> s
+		@plain.n -> n
+		@plain.e -> e
+		@plain.w -> w
+	@walls.s -> s
+	@walls.n -> n
+	@walls.e -> e
+	@walls.w -> w
+
+
+[town]
+town (wall_background)
+	walls (wall_background)
+		plain (plain)
+
+			square (town_square), !
+			town_section (town_section)
+			town_section2 (town_section)
+			building1 (building)
+			building2 (building)
+			building3 (building)
+			building4 (building_large)
+
+			@square.e -> town_section.s
+			@square.w -> town_section2.s
+
+			@square.n -> building1.s
+			@square.n -> building2.s
+			@square.n -> building3.s
+			@square.n -> building4.s
+
+			@square.n -> n
+			@square.e -> e
+			@square.s -> s #just in case
+			@square.w -> w #just in case
+
+		@plain.s -> s
+		@plain.n -> n
+		@plain.e -> e
+		@plain.w -> w
+	@walls.s -> s
+	@walls.n -> n
+	@walls.e -> e
+	@walls.w -> w

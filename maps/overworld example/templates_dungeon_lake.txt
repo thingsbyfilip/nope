@@ -1,0 +1,228 @@
+#dungeon rooms
+
+
+[water_room_center]
+water_room_center (water)
+	plain (plain)
+		walls (wall_background)
+			plaza (plaza_container), !
+				plaza (plaza_container), !
+					pillar (pillar)
+					pillar (pillar)
+					pillar (pillar)
+					building (building), !
+					building (building)
+					building (building)
+					building (building)
+					field (field)
+					field (field)
+					field (field)
+				pillar (pillar)
+				pillar (pillar)
+				pillar (pillar)
+				pillar (pillar)
+				pillar (pillar)
+				pillar (pillar)
+			@plaza.s -> s
+			@plaza.n -> n
+		@walls.s -> s
+		@walls.n -> n
+	@plain.s -> s
+	@plain.n -> n
+
+
+[water_room_center]
+water_room_center (water)
+	plain (plain)
+		walls (wall_background)
+			plaza (plaza_container), !
+				plaza (plaza_container), !
+					pillar (pillar)
+					pillar (pillar)
+					pillar (pillar)
+					field (field)
+					field (field)
+					field (field)
+				building (building), !
+				building (building)
+				building (building)
+				building (building)
+				pillar (pillar)
+				pillar (pillar)
+				pillar (pillar)
+				pillar (pillar)
+			@plaza.s -> s
+			@plaza.n -> n
+			@plaza.e -> e (destructible) #side passage
+		@walls.s -> s
+		@walls.n -> n
+		@walls.e -> e #side passage
+	@plain.s -> s
+	@plain.n -> n
+	@plain.e -> e #side passage
+
+
+[water_room_wide]
+water_room_wide (water)
+	plain (plain)
+		field (lake_field), !
+		tree1 (tree)
+		tree2 (tree)
+		@tree1.e -> e (grass)
+		@tree2.w -> w (grass)
+		@field.s -> s (grass)
+		@field.n -> n (grass)
+
+
+[water_room_basic]
+water_room_basic (water)
+	plain (plain)
+		tree1 (tree), !
+		tree2 (tree)
+		tree3 (tree)
+		tree4 (tree)
+		tree5 (tree)
+		tree6 (tree)
+		@tree1.s -> s (grass)
+		@tree1.n -> n (grass)
+
+
+[water_room_basic]
+water_room_basic (water)
+	plain (plain)
+		tree1 (tree), !
+		tree2 (tree)
+		tree3 (tree)
+		tree4 (tree)
+		tree5 (tree)
+		rock1 (rock)
+		rock2 (rock)
+		@tree2.s -> s (grass)
+		@tree3.n -> n (grass)
+		@tree4.e -> e (grass)
+		@tree5.w -> w (grass)
+		@tree1.s -> s (grass)
+		@tree1.n -> n (grass)
+
+
+[water_room_basic]
+water_room_basic (water)
+	plain (plain)
+		field (lake_field), !
+		tree1 (tree)
+		tree2 (tree)
+		tree3 (tree)
+		tree4 (tree)
+		@tree1.s -> s (grass)
+		@tree2.n -> n (grass)
+		@tree3.e -> e (grass)
+		@tree4.w -> w (grass)
+		@field.s -> s (grass)
+		@field.n -> n (grass)
+
+
+[water_room_wall_SN]
+water_room_wall_SN (water)
+	plain (plain)
+		walls (wall_background)
+			plaza (plaza_container)
+				pillar (pillar)
+				pillar (pillar)
+				pillar (pillar)
+				pillar (pillar)
+				pillar (pillar)
+				building1 (building)
+				building2 (building)
+			@plaza.s -> s
+			@plaza.n -> n
+		@walls.s -> s
+		@walls.n -> n
+	@plain.s -> s
+	@plain.n -> n
+
+
+[water_room_ruins]
+water_room_ruins (water)
+	plain (plain)
+		pillar (pillar), !
+		pillar (pillar)
+		pillar (pillar)
+		building1 (building)
+		building2 (building)
+		plaza1 (plaza_room)
+		plaza2 (plaza_room)
+		tree1 (tree)
+		tree2 (tree)
+		@plaza1.s -> s
+		@plaza1.n -> n
+		@plaza1.e -> e
+		@plaza1.w -> w
+		@plaza1.e -> building1.w
+		@plaza2.w -> building2.e
+		@building1.n -> building2.n
+		@plaza1.s -> plaza2.n
+	@plain.s -> s
+	@plain.n -> n
+	@plain.e -> e
+	@plain.w -> w
+
+
+[water_room_final]
+water_room_final (water)
+	plain (plain)
+		walls (wall_background)
+			plaza (plaza_container), !
+				plaza (plaza_container), !
+					chest (chest), !
+					pillar (pillar)
+					pillar (pillar)
+					pillar (pillar)
+					pillar (pillar)
+					pillar (pillar)
+				field (field)
+				field (field)
+				field (field)
+				building (building)
+				building (building)
+				building (building)
+				pillar (pillar)
+				pillar (pillar)
+				pillar (pillar)
+				pillar (pillar)
+			@plaza.s -> s
+			@plaza.n -> n
+		@walls.s -> s
+		@walls.n -> n
+	@plain.s -> s
+	@plain.n -> n
+
+
+#dungeon test
+
+[dungeon_water_S]
+dungeon_water_S (water)
+	entrance (water_room_wide)
+	room1 (water_room_basic)
+	room2 (water_room_basic)
+	room_wall_SN (water_room_wall_SN)
+	room_ruins_SE (water_room_ruins)
+	room_ruins_SEW (water_room_ruins)
+	room_center (water_room_center)
+	room_ruins_SW (water_room_ruins)
+	room3 (water_room_basic)
+	room4 (water_room_basic)
+	room_final (water_room_final)
+	@room1.e -> room_final.w (water)
+	@room_center.s -> room1.n (water)
+	@entrance.s -> s
+	@entrance.n -> room1.s
+	@room1.w -> room2.e
+	@room2.n -> room_wall_SN.s
+	@room_wall_SN.n -> room_ruins_SE.s
+	@room_ruins_SE.e -> room_ruins_SEW.w
+	@room_ruins_SEW.s -> room_center.n
+	@room_center.e -> room_ruins_SW.w
+	@room_ruins_SW.n -> room4.s
+	@room_ruins_SEW.e -> room3.w
+	@room3.s -> room4.n
+	@room_ruins_SW.s -> room_final.n

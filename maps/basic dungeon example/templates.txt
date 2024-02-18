@@ -1,0 +1,100 @@
+=== STRUCTURES ===
+
+rock_background		0/0/1, rock
+dirt_background		0/0/2, dirt
+grass_background	0/0/1, grass
+
+basic_room			6/6/2, dirt
+
+complex_room_center	6/6/0, dirt
+complex_room_side	3/3/0, dirt
+
+room_center			3/3/1, dirt
+
+pillar				2/2/2, building
+pond				5/4/2, water
+rock				2/2/2, rock
+stone				1/1/1, rock
+
+chest				2/2/2, chest
+boss				2/2/2, boss
+enemy				2/2/1, enemy
+
+
+=== TREE ===
+
+#rooms
+
+[pillar_room]
+pillar_room (dirt_background)
+	center (room_center), !
+	pillar (pillar)
+	pillar (pillar)
+	pillar (pillar)
+	pillar (pillar)
+
+
+[pond_room]
+pond_room (dirt_background)
+	pond (pond)
+
+
+[stone_room]
+stone_room (dirt_background)
+	rock (rock), !
+	rock (rock)
+	rock (rock)
+	stone (stone)
+	stone (stone)
+	stone (stone)
+
+
+[treasure_room]
+treasure_room (dirt_background)
+	chest (chest), !
+	rock (rock)
+	rock (rock)
+	rock (rock)
+
+
+[boss_room]
+boss_room (dirt_background)
+	center (room_center), !
+	boss (boss)
+	chest (chest)
+	stone1 (stone)
+	stone2 (stone)
+
+
+[complex_room]
+complex_room (rock_background)
+	room1 (complex_room_center), !
+	room2 (complex_room_side)
+	room3 (complex_room_side)
+	room4 (complex_room_side)
+	room5 (complex_room_side)
+
+
+#root node
+
+[root]
+dungeon (rock_background)
+	room1 (basic_room)
+	room2 (pillar_room)
+	room3 (pond_room)
+	room4 (stone_room)
+	room5 (treasure_room)
+	room6 (complex_room)
+	boss_room (boss_room)
+
+	#basic progression
+	@room1.s -> s (dirt)
+	@room1.n -> room2.e
+	@room2.w -> room3.e
+	@room3.e -> room4.s
+	@room4.n -> room5.w
+	@room5.e -> room6.s
+	@room6.n -> boss_room.s
+
+	#side connections
+	@room2.n -> room5.s

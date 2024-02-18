@@ -1,0 +1,252 @@
+#gigantic version - split into 2 parts (takes a long time to generate)
+
+[IGNORED]
+water (water)
+	continent (plain), %
+		west (plain), %
+			town (town)
+			forest_open_SNEW (forest_open)							#south of forest
+			forest_passage_river_EW (forest_passage_river_EW)
+			forest_open_NE (forest_open)
+			dungeon_earth_S (dungeon_earth_S)
+			forest_S (forest_S)
+			forest_open_SEW (forest_open)
+			forest_passage_SNW (forest_passage_SNW)					#right of town
+			@forest_passage_river_EW.s -> s (water)					#river
+			@town.n -> forest_open_SNEW.s
+			@forest_open_SNEW.w -> forest_passage_river_EW.e
+			@forest_passage_river_EW.w -> forest_open_NE.e
+			@dungeon_earth_S.s -> forest_open_NE.n
+			@forest_open_SNEW.n -> forest_S.s
+			@forest_open_SNEW.e -> forest_open_SEW.w
+			@town.e -> forest_passage_SNW.w
+			@forest_open_SEW.s -> forest_passage_SNW.n
+			@forest_open_SEW.e -> e
+		east (plain), %
+			forest_open_SEW (forest_open)
+			forest_passage_SNW (forest_passage_SNW)					#right of town
+			forest_open_NE (forest_open)
+			forest_passage_NEW (forest_passage_NEW)					#south of lake
+			dungeon_water_S (dungeon_water_S)
+			forest_open_SNEW (forest_open)
+			forest_passage_SEW (forest_passage_SEW)					#north of lake
+			forest_open_NW (forest_open)							#lower right corner
+			forest_passage_SN (forest_passage_SN)
+			dungeon_mountain_S (dungeon_mountain_S)
+			@forest_open_SNEW.n -> dungeon_mountain_S.s (water)		#water access
+			@forest_open_SEW.s -> forest_passage_SNW.n
+			@forest_passage_SNW.s -> forest_open_NE.n
+			@forest_open_NE.e -> forest_passage_NEW.w
+			@forest_passage_NEW.n -> dungeon_water_S.s
+			@forest_passage_NEW.e -> forest_open_NW.w
+			@forest_open_SEW.e -> forest_passage_SEW.w
+			@forest_passage_SEW.e -> forest_open_SNEW.w
+			@forest_open_SNEW.s -> forest_passage_SN.n
+			@forest_open_NW.n -> forest_passage_SN.s
+			@forest_passage_SEW.s -> dungeon_water_S.n
+			@forest_open_SEW.w -> w
+			@forest_passage_SNW.w -> w
+			@forest_open_SNEW.e -> e
+		@west.s -> w (water)
+		@west.e -> east.w
+
+
+#tests
+
+[IGNORED]
+water (water)
+	continent (plain), %
+		dungeon (dungeon_water_S)
+		@dungeon.s -> s (road)
+
+[IGNORED]
+water (water)
+	continent (plain), %
+		town (town)
+		@town.n -> n (road)
+
+[IGNORED]
+water (water)
+	continent (plain), %
+		passage (forest_passage_river_EW)
+		@passage.e -> e (road)
+		@passage.w -> w (road)
+
+
+#randomize the order of dungeons
+
+[dungeon]
+dungeon (forest_S)
+
+[dungeon]
+dungeon (dungeon_earth_S)
+
+[dungeon]
+dungeon (dungeon_water_S)
+
+[dungeon]
+dungeon (dungeon_mountain_S)
+
+
+#DEFAULT - crossroads to the NORTH of town
+
+[root]
+water (water)
+	continent (plain), %
+		### MAJOR AREAS ###
+
+		#town area
+		town (town)
+		forest_crossroads (forest_open)								#area above town, south of north dungeon
+
+		#west dungeon area
+		dungeon1 (dungeon*)
+		forest_before_dungeon (forest_open)
+		forest_river_passage (forest_passage_river_EW)				#path leading to west dungeon
+
+		#north dungeon area
+		dungeon2 (dungeon*)
+
+		#east dungeon area
+		dungeon3 (dungeon*)
+		forest_west_of_lake (forest_passage_SNW)					#right of town
+		forest_nw_of_lake (forest_open)
+		forest_north_of_lake (forest_passage_SEW)					#north of east dungeon
+		forest_sw_of_lake (forest_open)
+		forest_south_of_lake (forest_passage_NEW)					#south of east dungeon
+
+		### PATHS ###
+
+		#river
+		@forest_river_passage.s -> town.s (water)
+
+		#paths out of town
+		@town.n -> forest_crossroads.s
+		@town.e -> forest_west_of_lake.w
+
+		#path towards west dungeon
+		@forest_crossroads.w -> forest_river_passage.e
+		@forest_river_passage.w -> forest_before_dungeon.e
+		@dungeon1.s -> forest_before_dungeon.n
+
+		#path towards north dungeon
+		@forest_crossroads.n -> dungeon2.s
+
+		#path towards east dungeon
+		@forest_west_of_lake.e -> dungeon3.w (grass)				#'glue' position to the east side of dungeon
+		@forest_crossroads.e -> forest_nw_of_lake.w
+		@forest_nw_of_lake.s -> forest_west_of_lake.n
+		@forest_west_of_lake.s -> forest_sw_of_lake.n
+		@forest_sw_of_lake.e -> forest_south_of_lake.w
+		@forest_south_of_lake.n -> dungeon3.s
+		@forest_nw_of_lake.e -> forest_north_of_lake.w
+		@forest_north_of_lake.s -> dungeon3.n
+
+
+#crossroads to the EAST of town - messy, gets crowded, but not outright buggy
+
+[root]
+water (water)
+	continent (plain), %
+		### MAJOR AREAS ###
+
+		#town area
+		town (town)
+		forest_crossroads (forest_open)								#area above town, south of north dungeon
+
+		#west dungeon area
+		dungeon1 (dungeon*)
+		forest_before_dungeon (forest_open)
+		forest_river_passage (forest_passage_river_EW)				#path leading to west dungeon
+
+		#north dungeon area
+		dungeon2 (dungeon*)
+
+		#east dungeon area
+		dungeon3 (dungeon*)
+		forest_west_of_lake (forest_passage_SNW)					#right of town
+		forest_nw_of_lake (forest_open)
+		forest_north_of_lake (forest_passage_SEW)					#north of east dungeon
+		forest_sw_of_lake (forest_open)
+		forest_south_of_lake (forest_passage_NEW)					#south of east dungeon
+
+		### PATHS ###
+
+		#river
+		@forest_river_passage.s -> town.s (water)
+
+		#paths out of town
+		@town.e -> forest_crossroads.s
+
+		#path towards west dungeon
+		@forest_crossroads.w -> forest_river_passage.e
+		@forest_river_passage.w -> forest_before_dungeon.e
+		@dungeon1.s -> forest_before_dungeon.n
+
+		#path towards north dungeon
+		@forest_crossroads.n -> dungeon2.s
+
+		#path towards east dungeon
+		@forest_west_of_lake.e -> dungeon3.w (grass)				#'glue' position to the east side of dungeon
+		@forest_crossroads.e -> forest_nw_of_lake.w
+		@forest_nw_of_lake.s -> forest_west_of_lake.n
+		@forest_west_of_lake.s -> forest_sw_of_lake.n
+		@forest_sw_of_lake.e -> forest_south_of_lake.w
+		@forest_south_of_lake.n -> dungeon3.s
+		@forest_nw_of_lake.e -> forest_north_of_lake.w
+		@forest_north_of_lake.s -> dungeon3.n
+
+
+#crossroads to the WEST of town - longer spacing between structures
+
+[root]
+water (water)
+	continent (plain), %
+		### MAJOR AREAS ###
+
+		#town area
+		town (town)
+		forest_crossroads (forest_open)								#area above town, south of north dungeon
+
+		#west dungeon area
+		dungeon1 (dungeon*)
+		forest_before_dungeon (forest_open)
+		forest_river_passage (forest_passage_river_EW)				#path leading to west dungeon
+
+		#north dungeon area
+		dungeon2 (dungeon*)
+
+		#east dungeon area
+		dungeon3 (dungeon*)
+		forest_west_of_lake (forest_passage_SNW)					#right of town
+		forest_nw_of_lake (forest_open)
+		forest_north_of_lake (forest_passage_SEW)					#north of east dungeon
+		forest_sw_of_lake (forest_open)
+		forest_south_of_lake (forest_passage_NEW)					#south of east dungeon
+
+		### PATHS ###
+
+		#river
+		@forest_river_passage.s -> town.s (water)
+
+		#paths out of town
+		@town.w -> forest_crossroads.s
+		@town.e -> forest_west_of_lake.w
+
+		#path towards west dungeon
+		@forest_crossroads.w -> forest_river_passage.e
+		@forest_river_passage.w -> forest_before_dungeon.e
+		@dungeon1.s -> forest_before_dungeon.n
+
+		#path towards north dungeon
+		@forest_crossroads.n -> dungeon2.s
+
+		#path towards east dungeon
+		@forest_west_of_lake.e -> dungeon3.w (grass)				#'glue' position to the east side of dungeon
+		@forest_crossroads.e -> forest_nw_of_lake.w
+		@forest_nw_of_lake.s -> forest_west_of_lake.n
+		@forest_west_of_lake.s -> forest_sw_of_lake.n
+		@forest_sw_of_lake.e -> forest_south_of_lake.w
+		@forest_south_of_lake.n -> dungeon3.s
+		@forest_nw_of_lake.e -> forest_north_of_lake.w
+		@forest_north_of_lake.s -> dungeon3.n

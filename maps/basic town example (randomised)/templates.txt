@@ -1,0 +1,386 @@
+=== STRUCTURES ===
+
+plain				0/0/0, grass
+plain_wide			0/0/2, grass
+rock				3/3/1, rock
+rock2				3/3/2, rock
+rock_small			2/2/0, rock
+tree				2/2/2, forest
+tree_patch			5/3/1, forest
+plaza_background	0/0/1, road
+
+water				0/0/2, water
+pond				5/5/1, water
+
+wall_background		0/0/2, wall
+rock_background		0/0/0, rock
+
+waypoint			1/1/1, road
+square				3/3/1, road
+plaza				5/5/2, road
+
+pillar				2/2/2, building
+
+house				5/4/1, building
+house_big			6/5/1, building
+
+fence_bg			0/0/1, wall
+fence_inner			0/0/1, grass
+
+temple_bg			0/0/0, building
+temple_bg_wide		0/0/2, building
+temple_inner		5/4/2, road
+
+
+=== TREE ===
+
+#temple
+
+[temple_container]
+plain (plain)
+	temple (temple_bg_wide)
+		temple_inner (temple_inner)
+		@temple_inner.s -> s
+	waypoint (square), !
+	pillar1 (pillar)
+	pillar2 (pillar)
+	@temple.n -> n (grass)
+	@waypoint.e -> pillar1.w (grass)
+	@waypoint.w -> pillar2.e (grass)
+	@temple.s -> waypoint.n
+	@waypoint.s -> s
+	@waypoint.n -> n
+	@waypoint.e -> e
+	@waypoint.w -> w
+
+[temple_container]
+plain (plain)
+	temple (temple_bg_wide)
+		temple_inner (temple_inner)
+		@temple_inner.s -> s
+	waypoint (waypoint), !
+	trees1 (tree_patch)
+	trees2 (tree_patch)
+	@waypoint.e -> trees1.w (grass)
+	@waypoint.w -> trees2.e (grass)
+	@temple.n -> n (grass)
+	@waypoint.n -> temple.s
+	@waypoint.s -> s
+	@waypoint.n -> n
+	@waypoint.e -> e
+	@waypoint.w -> w
+
+#graveyard
+
+[graveyard]
+plain (plain)
+	plaza1 (plaza), !
+	plaza2 (plaza)
+	pillar (pillar)
+	pillar (pillar)
+	pillar (pillar)
+	pillar (pillar)
+	pillar (pillar)
+	pillar (pillar)
+	@plaza1.s -> s
+	@plaza1.n -> plaza2.s
+
+[graveyard]
+plain (plain)
+	plaza1 (plaza), !
+	plaza2 (plaza)
+	pillar (pillar)
+	pillar (pillar)
+	pillar (pillar)
+	pillar (pillar)
+	pillar (pillar)
+	pillar (pillar)
+	@plaza1.s -> s
+	@plaza1.e -> plaza2.w
+
+[graveyard]
+plain (plain)
+	plaza1 (plaza), !
+	pillar (pillar)
+	pillar (pillar)
+	pillar (pillar)
+	pillar (pillar)
+	pillar (pillar)
+	pillar (pillar)
+	pillar (pillar)
+	pillar (pillar)
+	@plaza1.s -> s
+	@plaza1.n -> plaza1.s
+
+[graveyard]
+plain (plain)
+	plaza1 (plaza), !
+	pillar (pillar)
+	pillar (pillar)
+	pillar (pillar)
+	pillar (pillar)
+	pillar (pillar)
+	pillar (pillar)
+	pillar (pillar)
+	@plaza1.s -> s
+	@plaza1.e -> plaza1.w
+
+
+#temple district (temple + graveyard)
+
+[temple_district]
+temple_district (wall_background)
+	temple_district (wall_background)
+		temple_district (plain)
+			temple (temple_container)
+			graveyard (graveyard)
+			@temple.e -> e (grass)
+			@graveyard.w -> w (grass)
+			@graveyard.s -> s
+			@temple.s -> s
+		@temple_district.s -> s
+	@temple_district.s -> s
+
+[temple_district]
+temple_district (water)
+	temple_district (water)
+		temple_district (plain)
+			temple (temple_container)
+			graveyard (graveyard)
+			@temple.e -> e (grass)
+			@graveyard.w -> w (grass)
+			@graveyard.s -> s
+			@temple.s -> s
+		@temple_district.s -> s
+	@temple_district.s -> s
+
+
+#houses
+#using multiple entries to affect probabilities
+
+[house_container]
+house (house)
+
+[house_container]
+house (house)
+
+[house_container]
+house (house)
+
+[house_container]
+house (house)
+
+[house_container]
+house (house)
+
+[house_container]
+house_big (house_big)
+
+[house_container]
+house_big (house_big)
+
+[house_container]
+house_big (house_big)
+
+[house_container]
+plain (plain)
+	house (house), !
+	tree (tree)
+	@house.e -> tree.w (grass)
+	@house.s -> s
+
+[house_container]
+plain (plain)
+	house (house), !
+	tree (tree)
+	@house.e -> tree.w (grass)
+	@house.s -> s
+
+[house_container]
+plain (plain)
+	house (house), !
+	tree (tree)
+	@house.w -> tree.e (grass)
+	@house.s -> s
+
+[house_container]
+plain (plain)
+	house (house), !
+	tree (tree)
+	@house.w -> tree.e (grass)
+	@house.s -> s
+
+[house_container]
+plain (plain)
+	fence_bg (fence_bg), !
+		fence_inner (fence_inner)
+			house (house)
+		@fence_inner.s -> s
+	@fence_bg.s -> s
+
+
+#plazas
+
+[plaza_container]
+waypoint (waypoint)
+
+[plaza_container]
+plaza (plaza)
+
+[plaza_container]
+plaza_background (plaza_background)
+	pillar (pillar)
+
+[plaza_container]
+plaza_background (plaza_background)
+	pond (pond)
+
+[plaza_container]
+plaza_background (plaza_background)
+	temple (temple_bg)
+		temple_inner (temple_inner)
+		@temple_inner.s -> s
+	@temple.s -> s
+	@temple.n -> n
+	@temple.e -> e
+	@temple.w -> w
+
+
+#districts
+
+[district]
+plain (plain_wide)
+	plaza (plaza_container), !
+	house1 (house_container)
+	house2 (house_container)
+	house3 (house_container)
+	house4 (house_container)
+	house5 (house_container)
+	@plaza.e -> house1.s
+	@plaza.w -> house2.s
+	@plaza.s -> house3.s
+	@house2.s -> house4.s
+	@house3.s -> house5.s
+	@plaza.s -> s
+	@plaza.n -> n
+	@plaza.e -> e
+	@plaza.w -> w
+
+[district]
+plain (plain_wide)
+	plaza (plaza_container), !
+	house1 (house_container)
+	house2 (house_container)
+	house3 (house_container)
+	house4 (house_container)
+	@plaza.n -> house1.s
+	@plaza.e -> house2.s
+	@plaza.w -> house3.s
+	@plaza.s -> house4.s
+	@plaza.s -> s
+	@plaza.n -> n
+	@plaza.e -> e
+	@plaza.w -> w
+
+[district]
+plain (plain_wide)
+	plaza (plaza_container), !
+	house1 (house_container)
+	house2 (house_container)
+	house3 (house_container)
+	house4 (house_container)
+	house5 (house_container)
+	tree (tree)
+	tree (tree)
+	@plaza.n -> house1.s
+	@plaza.n -> house2.s
+	@plaza.e -> house3.s
+	@plaza.w -> house4.s
+	@house4.s -> house5.s
+	@plaza.s -> s
+	@plaza.n -> n
+	@plaza.e -> e
+	@plaza.w -> w
+
+[district]
+water (water)
+	water (water)
+		plain (plain_wide)
+			plaza (plaza_container), !
+			house1 (house_container)
+			house2 (house_container)
+			house3 (house_container)
+			tree (tree)
+			tree (tree)
+			@plaza.s -> house1.s
+			@plaza.e -> house2.s
+			@plaza.w -> house3.s
+			@plaza.s -> s
+			@plaza.n -> n
+			@plaza.e -> e
+			@plaza.w -> w
+		@plain.s -> s
+		@plain.n -> n
+		@plain.e -> e
+		@plain.w -> w
+	@water.s -> s
+	@water.n -> n
+	@water.e -> e
+	@water.w -> w
+
+
+#root node
+
+#version A: 1 square -> 3 squares -> temple district (center)
+[root]
+plain (plain)
+	plain (plain)
+		area_center (district), !
+		area_north (temple_district)
+		area_west (district)
+		area_east (district)
+		area_south (district)
+		@area_center.n -> area_north.s
+		@area_center.w -> area_west.e
+		@area_center.e -> area_east.w
+		@area_center.s -> area_south.n
+		@area_south.s -> s
+	@plain.s -> s
+
+
+#version B1: 4 squares -> temple district (west side)
+[root]
+plain (plain)
+	plain (plain)
+		area_north (temple_district)
+		area_northwest (district)
+		area_northeast (district)
+		area_southwest (district)
+		area_southeast (district)
+		@area_northwest.n -> area_north.s
+		@area_northwest.w -> area_northeast.e
+		@area_southwest.w -> area_southeast.e
+		@area_northwest.s -> area_southwest.n
+		@area_northeast.s -> area_southeast.n
+		@area_southeast.s -> s
+		@area_southwest.s -> s
+	@plain.s -> s
+
+
+#version B2: 4 squares -> temple district (east side)
+[root]
+plain (plain)
+	plain (plain)
+		area_north (temple_district)
+		area_northwest (district)
+		area_northeast (district)
+		area_southwest (district)
+		area_southeast (district)
+		@area_northeast.n -> area_north.s
+		@area_northwest.w -> area_northeast.e
+		@area_southwest.w -> area_southeast.e
+		@area_northwest.s -> area_southwest.n
+		@area_northeast.s -> area_southeast.n
+		@area_southeast.s -> s
+		@area_southwest.s -> s
+	@plain.s -> s

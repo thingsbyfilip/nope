@@ -1,0 +1,55 @@
+=== STRUCTURES ===
+
+plain			0/0/1, grass
+no_margin		0/0/0, grass
+cave_background	0/0/3, mountain
+wall_background	0/0/3, wall
+water			0/0/1, water
+water2			0/0/2, water
+
+tree			2/2/1, forest
+building		7/6/2, building
+building_large	9/8/2, building
+pillar			2/2/2, building
+
+rock			3/3/1, rock
+rock2			3/3/2, rock
+rock_small		2/2/0, rock
+
+plaza_container	0/0/2, road
+plaza_room		5/5/2, road
+plaza_center	3/3/2, road
+waypoint		1/1/1, road
+
+moat			0/0/1, water
+puddle			3/3/1, water
+lake			5/5/1, water
+field			5/3/1, grass
+lake_field		5/3/0, grass
+
+castle_facade	0/0/1, grass
+courtyard		0/0/2, grass
+castle_walls	0/0/1, wall
+castle_island	0/0/3, grass
+castle_garden	0/0/1, grass
+castle_waypoint	1/1/1, road
+
+castle_main		15/7/2, building
+castle_pillar	2/2/2, building
+
+room_container	0/0/2, dirt
+room_center		3/3/2, dirt
+cave_room		5/5/2, dirt
+field_container	0/0/2, grass
+field_center	3/3/2, grass
+room_waypoint	1/1/1, dirt
+room_gap		2/2/0, dirt
+
+mansion			7/5/2, building
+house1			5/5/2, building
+house2			5/4/2, building
+house3			6/4/2, building
+blarge			9/7/2, building
+tsquare			4/4/2, road
+
+chest			2/2/3, chest

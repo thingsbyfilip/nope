@@ -1,0 +1,36 @@
+#forest dungeon/maze
+
+#corridor (S-E) -> plain (E-W) -> corridor (W-N) -> plain (N-)
+
+[forest_S]
+forest_S (plain)
+	forest_corridor_SE (forest_corridor)
+	forest_open (forest_open)
+	forest_corridor_NW (forest_corridor)
+	forest_open_N (forest_final)
+
+	@forest_open_N.n -> n (grass) #keep target north
+	@forest_corridor_SE.s -> s
+	@forest_corridor_SE.e -> forest_open.e
+	@forest_open.w -> forest_corridor_NW.w
+	@forest_corridor_NW.n -> forest_open_N.n
+
+	@forest_open_N.n -> n #optional back if something connects from the north
+
+
+#corridor (S-W) -> plain (W-E) -> corridor (E-N) -> plain (N-)
+
+[forest_S]
+forest_S (plain)
+	forest_corridor_SW (forest_corridor)
+	forest_open (forest_open)
+	forest_corridor_NW (forest_corridor)
+	forest_open_N (forest_final)
+
+	@forest_open_N.n -> n (grass) #keep target north
+	@forest_corridor_SW.s -> s
+	@forest_corridor_SW.w -> forest_open.w
+	@forest_open.e -> forest_corridor_NW.e
+	@forest_corridor_NW.n -> forest_open_N.n
+
+	@forest_open_N.n -> n #optional back if something connects from the north

@@ -1,0 +1,112 @@
+#dungeon rooms
+
+[mountain_room]
+mountain_room (field_container)
+	plaza (plaza_center)
+	rock (rock)
+	@plaza.s -> s
+	@plaza.n -> n
+	@plaza.e -> e
+	@plaza.w -> w
+
+
+[mountain_room_large]
+mountain_room_large (field_container)
+	plaza (plaza_center)
+	rock (rock)
+	rock (rock)
+	rock (rock)
+	@plaza.s -> s
+	@plaza.n -> n
+	@plaza.e -> e
+	@plaza.w -> w
+
+
+[mountain_room_final]
+mountain_room_final (field_container)
+	plain (plain), !
+		plaza (plaza_container), !
+			center (plaza_center)
+			chest (chest)
+			@center.s -> s (plaza)
+		rock (rock)
+		rock (rock)
+		rock (rock)
+		rock (rock)
+		rock (rock)
+		rock (rock)
+		rock (rock)
+		rock (rock)
+		@plaza.s -> s
+	rock (rock)
+	rock (rock)
+	rock (rock)
+	rock (rock)
+	rock (rock)
+	rock (rock)
+	rock (rock)
+	rock (rock)
+	@plain.s -> s
+
+
+#winding paths
+
+[mountain_path_L]
+mountain_path_L (plain)
+	room1 (mountain_room)
+	room2 (mountain_room)
+	room3 (mountain_room)
+	@room1.n -> n
+	@room3.s -> s
+	@room2.n -> room1.s
+	@room3.e -> room2.w
+	@room2.e -> e
+	@room3.w -> w
+
+
+[mountain_path_R]
+mountain_path_R (plain)
+	room1 (mountain_room)
+	room2 (mountain_room)
+	room3 (mountain_room)
+	@room2.s -> s
+	@room2.n -> room1.s
+	@room3.w -> room2.e
+	@room3.e -> e
+	@room2.w -> w
+	@room1.n -> n
+
+
+[mountain_path_SN]
+mountain_path_SN (plain)
+	room_large (mountain_room_large)
+	room (mountain_room)
+	@room_large.s -> s
+	@room.s -> room_large.n
+	@room.n -> n
+
+
+#dungeon
+
+[dungeon_mountain_S]
+dungeon_mountain_S (cave_background)
+	entrance (mountain_room_large)
+	path_L (mountain_path_L)
+	path_R (mountain_path_R)
+	room_large1 (mountain_room_large)
+	room_large2 (mountain_room_large)
+	room_large3 (mountain_room_large)
+	room_large4 (mountain_room_large)
+	path_SN (mountain_path_SN)
+	room_final (mountain_room_final)
+	room_ahead (mountain_room_large)
+	@entrance.n -> path_L.s (road)
+	@path_L.n -> path_R.s (road)
+	@path_L.e -> room_large1.w (road)
+	@path_L.w -> room_large2.e (road)
+	@path_R.w -> room_large3.e (road)
+	@path_R.e -> room_large4.w (road)
+	@room_large4.n -> path_SN.s (road)
+	@path_SN.n -> room_final.s (road)
+	@path_R.n -> room_ahead.s (road)
+	@entrance.s -> s (destructible)

@@ -1,0 +1,279 @@
+#=== forest subsections ===
+
+[forest_subsection]
+forest_subsection (plain)
+	pillar (pillar), !
+	pillar (pillar)
+	pillar (pillar)
+	pillar (pillar)
+
+[forest_subsection]
+forest_subsection (plain)
+	tree (tree), !
+	tree (tree)
+	tree (tree)
+	tree (tree)
+
+[forest_subsection]
+forest_subsection (plain)
+	puddle (puddle), !
+	tree (tree)
+	tree (tree)
+	tree (tree)
+
+
+#=== forest openings (trees and rocks) ===
+
+[forest_open]
+forest_open (plain)
+	waypoint (waypoint), !
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	rock (rock)
+	rock (rock)
+	rock (rock)
+	@waypoint.s -> s
+	@waypoint.n -> n
+	@waypoint.e -> e
+	@waypoint.w -> w
+
+
+#=== forest openings (trees only) ===
+
+[forest_open]
+forest_open (plain)
+	waypoint (waypoint), !
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	@waypoint.s -> s
+	@waypoint.n -> n
+	@waypoint.e -> e
+	@waypoint.w -> w
+
+
+#=== forest openings (trees and subsections) ===
+
+[forest_open]
+forest_open (plain)
+	waypoint (waypoint), !
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	forest_subsection (forest_subsection)
+	forest_subsection (forest_subsection)
+	@waypoint.s -> s
+	@waypoint.n -> n
+	@waypoint.e -> e
+	@waypoint.w -> w
+
+
+[forest_open]
+forest_open (plain)
+	waypoint (waypoint), !
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	forest_subsection (forest_subsection)
+	forest_subsection (forest_subsection)
+	@waypoint.s -> s
+	@waypoint.n -> n
+	@waypoint.e -> e
+	@waypoint.w -> w
+
+
+#=== forest openings (lake and subsections) ===
+
+[forest_open]
+forest_open (plain)
+	lake (lake), !
+	waypoint (waypoint)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	forest_subsection (forest_subsection)
+	forest_subsection (forest_subsection)
+	@waypoint.s -> s
+	@waypoint.n -> n
+	@waypoint.e -> e
+	@waypoint.w -> w
+
+
+#=== forest openings (lake and subsections, version B) ===
+
+[forest_open]
+forest_open (plain)
+	lake (lake), !
+	waypoint (waypoint)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	forest_subsection (forest_subsection)
+	forest_subsection (forest_subsection)
+	forest_subsection (forest_subsection)
+	@waypoint.s -> s
+	@waypoint.n -> n
+	@waypoint.e -> e
+	@waypoint.w -> w
+
+
+#=== forest openings (lake and subsections, version C) ===
+
+[forest_open]
+forest_open (plain)
+	lake (lake), !
+	waypoint (waypoint)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	forest_subsection (forest_subsection)
+	forest_subsection (forest_subsection)
+	@waypoint.s -> s
+	@waypoint.n -> n
+	@waypoint.e -> e
+	@waypoint.w -> w
+
+
+#=== forest final area ===
+
+[forest_final]
+forest_final (plain)
+	waypoint (water), !
+		plain (plain), !
+			chest (chest), !
+			tree (tree)
+			tree (tree)
+			tree (tree)
+		@plain.s -> s (road)
+		@plain.n -> n (road)
+		@plain.e -> e (road)
+		@plain.w -> w (road)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	forest_subsection (forest_subsection)
+	forest_subsection (forest_subsection)
+	@waypoint.s -> s
+	@waypoint.n -> n
+	@waypoint.e -> e
+	@waypoint.w -> w
+
+
+#=== forest openings with river ===
+
+[forest_open_river_EW]
+forest_open_river_EW (plain)
+	cave_background (cave_background), !
+		cave_background (cave_background)
+			lake (lake)
+			@lake.s -> s (water)
+		@cave_background.s -> s (water)
+	waypoint (water)
+		waypoint (waypoint)
+		@waypoint.s -> s (water)
+		@waypoint.n -> n (water)
+		@waypoint.e -> e
+		@waypoint.w -> w
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	@cave_background.s -> waypoint.n (water)
+	@waypoint.s -> s (water)
+	@waypoint.e -> e
+	@waypoint.w -> w
+
+[forest_open_river_SN]
+forest_open_river_SN (plain)
+	cave_background (cave_background), !
+		cave_background (cave_background)
+			lake (lake)
+			@lake.e -> e (water)
+		@cave_background.e -> e (water)
+	waypoint (water)
+		waypoint (waypoint)
+		@waypoint.e -> e (water)
+		@waypoint.w -> w (water)
+		@waypoint.s -> s
+		@waypoint.n -> n
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	@cave_background.e -> waypoint.w (water)
+	@waypoint.e -> e (water)
+	@waypoint.s -> s
+	@waypoint.n -> n
+
+
+#=== forest corridors (alternative) ===
+
+[forest_corridor]
+plain (plain)
+	waypoint (waypoint), !
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	rock (rock)
+	@waypoint.s -> s
+	@waypoint.n -> n
+	@waypoint.e -> e
+	@waypoint.w -> w
+
+
+#=== forest corridors ===
+
+[forest_corridor]
+forest_corridor (plain)
+	waypoint (waypoint), !
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	tree (tree)
+	rock (rock)
+	rock (rock)
+	@waypoint.s -> s
+	@waypoint.n -> n
+	@waypoint.e -> e
+	@waypoint.w -> w
