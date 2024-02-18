@@ -4,7 +4,7 @@ The goal of this project was to create a reusable method for procedurally genera
 
 Map templates are used to generate possible map graphs, which are then converted into 2-dimensional maps by recursively arranging and connecting their nodes from the bottom up until every required structure and road is generated. The end result can then (optionally) undergo post-processing to add more details.
 
-![alt text](https://i.imgur.com/EZFoXGB.png)
+![alt text](resources/steps_illustration.png)
 
 The project is written in Python and includes both a pygame-based interface (*main.py*) for visualizing results of writing specific grammars included in a maps directory, as well as an example of using the generator to directly generate maps from specific files (*ascii_level_example.py*).
 
